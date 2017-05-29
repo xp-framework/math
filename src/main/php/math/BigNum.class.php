@@ -69,10 +69,13 @@ abstract class BigNum implements \lang\Value {
   public function doubleValue() { return (double)$this->num; }
 
   /** @return string */
+  public function __toString() { return $this->num; }
+
+  /** @return string */
   public function toString() { return nameof($this).'('.$this->num.')'; }
 
   /** @return string */
-  public function hashCode() { return $this->num; }
+  public function hashCode() { return (string)$this->num; }
 
   /**
    * Compare another value to this bignum

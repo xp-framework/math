@@ -286,15 +286,6 @@ class BigInt extends BigNum {
     }
     return ltrim($value, "\0");    
   }
-  
-  /**
-   * String cast overloading
-   *
-   * @return  string
-   */
-  public function __toString() {
-    return $this->num;
-  }
 
   /**
    * Returns an byte representing this big integer

@@ -114,13 +114,4 @@ class BigFloat extends BigNum {
       : ('-' === $this->num{0} ? bcsub($this->num, $a, $precision) : bcadd($this->num, $a, $precision))
     );
   }
-
-  /**
-   * String cast overloading
-   *
-   * @return  string
-   */
-  public function __toString() {
-    return $this->num;
-  }
 }
