@@ -5,6 +5,7 @@ Pattern matching changelog
 
 ## 8.0.0 / 2017-05-29
 
+* **Heads up:** Dropped PHP 5.5 support - @thekid
 * Merged PR #1: Forward compatibility with XP 9.0.0 - @thekid
 
 ## 7.1.0 / 2016-08-28
