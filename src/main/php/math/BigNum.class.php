@@ -9,7 +9,7 @@
  * @see      http://sine.codeplex.com/SourceControl/changeset/view/57274#1535069 
  * @ext      bcmath
  */
-abstract class BigNum extends \lang\Object {
+abstract class BigNum implements \lang\Value {
   protected $num;
 
   static function __static() {
@@ -53,41 +53,44 @@ abstract class BigNum extends \lang\Object {
    * @return  math.BigNum
    */
   public abstract function divide($other);
-
-  /**
-   * Returns whether another object is equal to this
-   *
-   * @param   lang.Generic cmp
-   * @return  bool
-   */
-  public function equals($cmp) {
-    return $cmp instanceof $this && 0 === bccomp($cmp->num, $this->num);
-  }
   
   /**
    * Returns an integer representing this bignum
    *
-   * @return  int
+   * @return int
    */
-  public function intValue() {
-    return (int)substr($this->num, 0, strcspn($this->num, '.'));
-  }
+  public function intValue() { return (int)substr($this->num, 0, strcspn($this->num, '.')); }
 
   /**
    * Returns a double representing this bignum
    *
-   * @return  int
+   * @return double
    */
-  public function doubleValue() {
-    return (double)$this->num;
+  public function doubleValue() { return (double)$this->num; }
+
+  /** @return string */
+  public function toString() { return nameof($this).'('.$this->num.')'; }
+
+  /** @return string */
+  public function hashCode() { return $this->num; }
+
+  /**
+   * Compare another value to this bignum
+   *
+   * @param  var $value
+   * @return int
+   */
+  public function compareTo($value) {
+    return $value instanceof $this ? bccomp($this->num, $value->num) : 1;
   }
 
   /**
-   * Returns a string representation
+   * Returns whether another object is equal to this
    *
-   * @return  string
+   * @param  var $value
+   * @return bool
    */
-  public function toString() {
-    return typeof($this).'('.(string)$this.')';
+  public function equals($value) {
+    return $value instanceof $this && 0 === bccomp($this->num, $value->num);
   }
 }
