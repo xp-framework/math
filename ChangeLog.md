@@ -1,5 +1,5 @@
-Pattern matching changelog
-==========================
+XP Math changelog
+=================
 
 ## ?.?.? / ????-??-??
 
