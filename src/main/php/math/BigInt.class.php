@@ -267,7 +267,7 @@ class BigInt extends BigNum {
     $bytes= str_pad($bytes, $len, "\0", STR_PAD_LEFT);
     $self= new self(0);
     for ($i= 0; $i < $len; $i+= 4) {
-      $self->num= bcadd(bcmul($self->num, '4294967296'), 0x1000000 * ord($bytes{$i}) + current(unpack('N', "\0".substr($bytes, $i+ 1, 3))));
+      $self->num= bcadd(bcmul($self->num, '4294967296'), 0x1000000 * ord($bytes[$i]) + current(unpack('N', "\0".substr($bytes, $i+ 1, 3))));
     }      
     return $self;
   }

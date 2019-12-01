@@ -82,7 +82,7 @@ class BigFloat extends BigNum {
   public function ceil() {
     return new self(false === strpos($this->num, '.') 
       ? $this->num 
-      : ('-' === $this->num{0} ? bcsub($this->num, 0, 0) : bcadd($this->num, 1, 0))
+      : ('-' === $this->num[0] ? bcsub($this->num, 0, 0) : bcadd($this->num, 1, 0))
     );
   }
 
@@ -94,7 +94,7 @@ class BigFloat extends BigNum {
   public function floor() {
     return new self(false === strpos($this->num, '.') 
       ? $this->num 
-      : ('-' === $this->num{0} ? bcsub($this->num, 1, 0) : bcadd($this->num, 0, 0))
+      : ('-' === $this->num[0] ? bcsub($this->num, 1, 0) : bcadd($this->num, 0, 0))
     );
   }
 
@@ -111,7 +111,7 @@ class BigFloat extends BigNum {
     $a= '0.'.str_repeat('0', $precision).'5';
     return new self(false === strpos($this->num, '.') 
       ? $this->num 
-      : ('-' === $this->num{0} ? bcsub($this->num, $a, $precision) : bcadd($this->num, $a, $precision))
+      : ('-' === $this->num[0] ? bcsub($this->num, $a, $precision) : bcadd($this->num, $a, $precision))
     );
   }
 }
