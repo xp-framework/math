@@ -1,8 +1,7 @@
 <?php namespace math\unittest;
 
-use math\BigFloat;
-use math\BigInt;
 use lang\IllegalArgumentException;
+use math\{BigFloat, BigInt};
 
 class BigFloatTest extends \unittest\TestCase {
 
