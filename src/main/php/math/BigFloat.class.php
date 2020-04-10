@@ -1,5 +1,7 @@
 <?php namespace math;
 
+use lang\IllegalArgumentException;
+
 /**
  * A big float
  *
@@ -58,7 +60,7 @@ class BigFloat extends BigNum {
     if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other))) {
       $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
       \xp::gc(__FILE__);
-      throw new \lang\IllegalArgumentException($e);
+      throw new IllegalArgumentException($e);
     }
     return new self($r);
   }

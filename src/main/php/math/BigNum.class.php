@@ -1,5 +1,7 @@
 <?php namespace math;
 
+use lang\Value;
+
 /**
  * A big number
  *
@@ -9,7 +11,7 @@
  * @see      http://sine.codeplex.com/SourceControl/changeset/view/57274#1535069 
  * @ext      bcmath
  */
-abstract class BigNum implements \lang\Value {
+abstract class BigNum implements Value {
   protected $num;
 
   static function __static() {
@@ -23,7 +25,7 @@ abstract class BigNum implements \lang\Value {
    * @return  math.BigNum
    */
   public function add($other) {
-    return new $this(bcadd($this->num, $other instanceof self ? $other->num : $other));
+    return new static(bcadd($this->num, $other instanceof self ? $other->num : $other));
   }
 
   /**
@@ -33,7 +35,7 @@ abstract class BigNum implements \lang\Value {
    * @return  math.BigNum
    */
   public function subtract($other) {
-    return new $this(bcsub($this->num, $other instanceof self ? $other->num : $other));
+    return new static(bcsub($this->num, $other instanceof self ? $other->num : $other));
   }
 
   /**
@@ -43,7 +45,7 @@ abstract class BigNum implements \lang\Value {
    * @return  math.BigNum
    */
   public function multiply($other) {
-    return new $this(bcmul($this->num, $other instanceof self ? $other->num : $other));
+    return new static(bcmul($this->num, $other instanceof self ? $other->num : $other));
   }
 
   /**
