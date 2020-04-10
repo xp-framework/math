@@ -5,6 +5,7 @@ XP Math changelog
 
 ## 9.0.0 / 2020-04-10
 
+* Fixed PHP 8.0 compatibility when dividing by zero - @thekid
 * Implemented xp-framework/rfc#334: Drop PHP 5.6:
   . **Heads up:** Minimum required PHP version now is PHP 7.0.0
   . Rewrote code base, grouping use statements

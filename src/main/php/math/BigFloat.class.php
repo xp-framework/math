@@ -57,12 +57,16 @@ class BigFloat extends BigNum {
    * @return  math.BigNum
    */
   public function divide($other) {
-    if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other))) {
-      $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-      \xp::gc(__FILE__);
-      throw new IllegalArgumentException($e);
+    try {
+      if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other))) {
+        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+        \xp::gc(__FILE__);
+        throw new IllegalArgumentException($e);
+      }
+      return new self($r);
+    } catch (\Error $e) {  // PHP 8.0
+      throw new IllegalArgumentException($e->getMessage());
     }
-    return new self($r);
   }
 
   /**

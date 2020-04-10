@@ -81,34 +81,38 @@ class BigInt extends BigNum {
    * @return  math.BigNum
    */
   public function divide($other) {
-    if ($other instanceof self) {
-      if (null === ($r= bcdiv($this->num, $other->num, 0))) {     // inlined
-        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-        \xp::gc(__FILE__);
-        throw new IllegalArgumentException($e);
+    try {
+      if ($other instanceof self) {
+        if (null === ($r= bcdiv($this->num, $other->num, 0))) {     // inlined
+          $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+          \xp::gc(__FILE__);
+          throw new IllegalArgumentException($e);
+        }
+        return new self($r);
+      } else if (is_int($other)) {
+        if (null === ($r= bcdiv($this->num, $other, 0))) {          // inlined
+          $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+          \xp::gc(__FILE__);
+          throw new IllegalArgumentException($e);
+        }
+        return new self($r);
+      } else if ($other instanceof BigFloat) {
+        if (null === ($r= bcdiv($this->num, $other->num))) {        // inlined
+          $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+          \xp::gc(__FILE__);
+          throw new IllegalArgumentException($e);
+        }
+        return new BigFloat($r);
+      } else {
+        if (null === ($r= bcdiv($this->num, $other))) {             // inlined
+          $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+          \xp::gc(__FILE__);
+          throw new IllegalArgumentException($e);
+        }
+        return new BigFloat($r);
       }
-      return new self($r);
-    } else if (is_int($other)) {
-      if (null === ($r= bcdiv($this->num, $other, 0))) {          // inlined
-        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-        \xp::gc(__FILE__);
-        throw new IllegalArgumentException($e);
-      }
-      return new self($r);
-    } else if ($other instanceof BigFloat) {
-      if (null === ($r= bcdiv($this->num, $other->num))) {        // inlined
-        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-        \xp::gc(__FILE__);
-        throw new IllegalArgumentException($e);
-      }
-      return new BigFloat($r);
-    } else {
-      if (null === ($r= bcdiv($this->num, $other))) {             // inlined
-        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-        \xp::gc(__FILE__);
-        throw new IllegalArgumentException($e);
-      }
-      return new BigFloat($r);
+    } catch (\Error $e) {  // PHP 8.0
+      throw new IllegalArgumentException($e->getMessage());
     }
   }
 
@@ -149,12 +153,16 @@ class BigInt extends BigNum {
    * @return  math.BigNum
    */
   public function divide0($other) {
-    if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other, 0))) {
-      $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-      \xp::gc(__FILE__);
-      throw new IllegalArgumentException($e);
+    try {
+      if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other, 0))) {
+        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+        \xp::gc(__FILE__);
+        throw new IllegalArgumentException($e);
+      }
+      return new self($r);
+    } catch (\Error $e) {  // PHP 8.0
+      throw new IllegalArgumentException($e->getMessage());
     }
-    return new self($r);
   }
 
   /**
@@ -189,12 +197,16 @@ class BigInt extends BigNum {
    * @return  math.BigNum
    */
   public function modulo($other) {
-    if (null === ($r= bcmod($this->num, $other instanceof self ? $other->num : $other))) {
-      $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
-      \xp::gc(__FILE__);
-      throw new IllegalArgumentException($e);
+    try {
+      if (null === ($r= bcmod($this->num, $other instanceof self ? $other->num : $other))) {
+        $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
+        \xp::gc(__FILE__);
+        throw new IllegalArgumentException($e);
+      }
+      return new $this($r);
+    } catch (\Error $e) {  // PHP 8.0
+      throw new IllegalArgumentException($e->getMessage());
     }
-    return new $this($r);
   }
   
   /**
