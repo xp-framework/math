@@ -1,5 +1,7 @@
 <?php namespace math;
 
+use lang\IllegalArgumentException;
+
 /**
  * A big integer
  *
@@ -83,28 +85,28 @@ class BigInt extends BigNum {
       if (null === ($r= bcdiv($this->num, $other->num, 0))) {     // inlined
         $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
         \xp::gc(__FILE__);
-        throw new \lang\IllegalArgumentException($e);
+        throw new IllegalArgumentException($e);
       }
       return new self($r);
     } else if (is_int($other)) {
       if (null === ($r= bcdiv($this->num, $other, 0))) {          // inlined
         $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
         \xp::gc(__FILE__);
-        throw new \lang\IllegalArgumentException($e);
+        throw new IllegalArgumentException($e);
       }
       return new self($r);
     } else if ($other instanceof BigFloat) {
       if (null === ($r= bcdiv($this->num, $other->num))) {        // inlined
         $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
         \xp::gc(__FILE__);
-        throw new \lang\IllegalArgumentException($e);
+        throw new IllegalArgumentException($e);
       }
       return new BigFloat($r);
     } else {
       if (null === ($r= bcdiv($this->num, $other))) {             // inlined
         $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
         \xp::gc(__FILE__);
-        throw new \lang\IllegalArgumentException($e);
+        throw new IllegalArgumentException($e);
       }
       return new BigFloat($r);
     }
@@ -150,7 +152,7 @@ class BigInt extends BigNum {
     if (null === ($r= bcdiv($this->num, $other instanceof self ? $other->num : $other, 0))) {
       $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
       \xp::gc(__FILE__);
-      throw new \lang\IllegalArgumentException($e);
+      throw new IllegalArgumentException($e);
     }
     return new self($r);
   }
@@ -169,12 +171,12 @@ class BigInt extends BigNum {
       return new self(bcpow($this->num, $other));
     } else if ($other instanceof BigFloat) {
       if (strpos($other->num, '.')) {             // inlined
-        throw new \lang\IllegalArgumentException('Decimal exponents not supported');
+        throw new IllegalArgumentException('Decimal exponents not supported');
       }
       return new BigFloat(bcpow($this->num, $other->num));
     } else {
       if (strpos($other, '.')) {                 // inlined
-        throw new \lang\IllegalArgumentException('Decimal exponents not supported');
+        throw new IllegalArgumentException('Decimal exponents not supported');
       }
       return new BigFloat(bcpow($this->num, $other));
     }
@@ -190,7 +192,7 @@ class BigInt extends BigNum {
     if (null === ($r= bcmod($this->num, $other instanceof self ? $other->num : $other))) {
       $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
       \xp::gc(__FILE__);
-      throw new \lang\IllegalArgumentException($e);
+      throw new IllegalArgumentException($e);
     }
     return new $this($r);
   }
