@@ -3,6 +3,10 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+## 9.0.1 / 2021-10-21
+
+* Made compatible with XP 11 - @thekid
+
 ## 9.0.0 / 2020-04-10
 
 * Fixed PHP 8.0 compatibility when dividing by zero - @thekid
