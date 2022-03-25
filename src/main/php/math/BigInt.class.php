@@ -29,9 +29,9 @@ class BigInt extends BigNum {
    */
   public function add($other) {
     if ($other instanceof self) {
-      return new self(bcadd($this->num, $other->num));
-    } else if (is_int($other)) {
-      return new self(bcadd($this->num, $other));
+      return new self(bcadd($this->num, $other->num, 0));
+    } else if (is_int($other) || is_string($other) && false === strpos($other, '.')) {
+      return new self(bcadd($this->num, $other, 0));
     } else if ($other instanceof BigFloat) {
       return new BigFloat(bcadd($this->num, $other->num));
     } else {
@@ -47,9 +47,9 @@ class BigInt extends BigNum {
    */
   public function subtract($other) {
     if ($other instanceof self) {
-      return new self(bcsub($this->num, $other->num));
-    } else if (is_int($other)) {
-      return new self(bcsub($this->num, $other));
+      return new self(bcsub($this->num, $other->num, 0));
+    } else if (is_int($other) || is_string($other) && false === strpos($other, '.')) {
+      return new self(bcsub($this->num, $other, 0));
     } else if ($other instanceof BigFloat) {
       return new BigFloat(bcsub($this->num, $other->num));
     } else {
@@ -65,9 +65,9 @@ class BigInt extends BigNum {
    */
   public function multiply($other) {
     if ($other instanceof self) {
-      return new self(bcmul($this->num, $other->num));
-    } else if (is_int($other)) {
-      return new self(bcmul($this->num, $other));
+      return new self(bcmul($this->num, $other->num, 0));
+    } else if (is_int($other) || is_string($other) && false === strpos($other, '.')) {
+      return new self(bcmul($this->num, $other, 0));
     } else if ($other instanceof BigFloat) {
       return new BigFloat(bcmul($this->num, $other->num));
     } else {
@@ -90,7 +90,7 @@ class BigInt extends BigNum {
           throw new IllegalArgumentException($e);
         }
         return new self($r);
-      } else if (is_int($other)) {
+      } else if (is_int($other) || is_string($other) && false === strpos($other, '.')) {
         if (null === ($r= bcdiv($this->num, $other, 0))) {          // inlined
           $e= key(\xp::$errors[__FILE__][__LINE__- 1]);
           \xp::gc(__FILE__);
