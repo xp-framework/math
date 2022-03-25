@@ -377,4 +377,9 @@ class BigIntTest extends \unittest\TestCase {
   public function negative_string_representation() {
     $this->assertEquals('math.BigInt(-4)', (new BigInt(-4))->toString());
   }
+
+  #[Test]
+  public function bitshifting_does_not_introduce_decimals() {
+    $this->assertEquals('256', (string)((new BigInt(1))->bitwiseXor(257)));
+  }
 }

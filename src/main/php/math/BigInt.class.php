@@ -255,7 +255,7 @@ class BigInt extends BigNum {
    * @return  math.BigNum
    */
   public function shiftRight($shift) {
-    return new self(bcdiv($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift), 0));
+    return new self(bcdiv($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift, 0), 0));
   }
   
   /**
@@ -265,7 +265,7 @@ class BigInt extends BigNum {
    * @return  math.BigNum
    */
   public function shiftLeft($shift) {
-    return new self(bcmul($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift), 0));
+    return new self(bcmul($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift, 0), 0));
   }
   
   /**
@@ -281,8 +281,12 @@ class BigInt extends BigNum {
     $bytes= str_pad($bytes, $len, "\0", STR_PAD_LEFT);
     $self= new self(0);
     for ($i= 0; $i < $len; $i+= 4) {
-      $self->num= bcadd(bcmul($self->num, '4294967296'), 0x1000000 * ord($bytes[$i]) + current(unpack('N', "\0".substr($bytes, $i+ 1, 3))));
-    }      
+      $self->num= bcadd(
+        bcmul($self->num, '4294967296', 0),
+        0x1000000 * ord($bytes[$i]) + unpack('N', "\0".substr($bytes, $i + 1, 3))[1],
+        0
+      );
+    }
     return $self;
   }
   
@@ -296,7 +300,7 @@ class BigInt extends BigNum {
     $value= '';
     while (bccomp($n, 0) > 0) {
       $value= substr(pack('N', bcmod($n, 0x1000000)), 1).$value;
-      $n= bcdiv($n, 0x1000000);
+      $n= bcdiv($n, 0x1000000, 0);
     }
     return ltrim($value, "\0");    
   }

@@ -3,6 +3,8 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+* Fixed issue #2: Bit shifting introduces "decimals" - @thekid
+
 ## 9.0.1 / 2021-10-21
 
 * Made compatible with XP 11 - @thekid
