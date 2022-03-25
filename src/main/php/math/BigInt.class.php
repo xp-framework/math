@@ -252,7 +252,7 @@ class BigInt extends BigNum {
   /**
    * >>
    *
-   * @param   var shift
+   * @param  math.BigNum|int|float|string $shift
    * @return math.BigNum
    */
   public function shiftRight($shift) {
@@ -262,7 +262,7 @@ class BigInt extends BigNum {
   /**
    * <<
    *
-   * @param   var shift
+   * @param  math.BigNum|int|float|string $shift
    * @return math.BigNum
    */
   public function shiftLeft($shift) {
