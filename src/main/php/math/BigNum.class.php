@@ -21,38 +21,32 @@ abstract class BigNum implements Value {
   /**
    * +
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  self|int|float|string $other
+   * @return self
    */
-  public function add($other) {
-    return new static(bcadd($this->num, $other instanceof self ? $other->num : $other));
-  }
+  public abstract function add($other);
 
   /**
    * -
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  self|int|float|string $other
+   * @return self
    */
-  public function subtract($other) {
-    return new static(bcsub($this->num, $other instanceof self ? $other->num : $other));
-  }
+  public abstract function subtract($other);
 
   /**
    * *
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  self|int|float|string $other
+   * @return self
    */
-  public function multiply($other) {
-    return new static(bcmul($this->num, $other instanceof self ? $other->num : $other));
-  }
+  public abstract function multiply($other);
 
   /**
    * /
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  self|int|float|string $other
+   * @return self
    */
   public abstract function divide($other);
   

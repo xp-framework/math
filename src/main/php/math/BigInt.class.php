@@ -14,7 +14,7 @@ class BigInt extends BigNum {
   /**
    * Creates a new BigInt instance
    *
-   * @param   string in
+   * @param  int|float|string $in
    */
   public function __construct($in) {
     $this->num= substr($in, 0, strcspn($in, '.'));
@@ -23,8 +23,8 @@ class BigInt extends BigNum {
   /**
    * +
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function add($other) {
     if ($other instanceof self) {
@@ -41,8 +41,8 @@ class BigInt extends BigNum {
   /**
    * -
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function subtract($other) {
     if ($other instanceof self) {
@@ -59,8 +59,8 @@ class BigInt extends BigNum {
   /**
    * *
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function multiply($other) {
     if ($other instanceof self) {
@@ -77,8 +77,8 @@ class BigInt extends BigNum {
   /**
    * /
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function divide($other) {
     try {
@@ -119,8 +119,8 @@ class BigInt extends BigNum {
   /**
    * +(0), strictly integer addition
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function add0($other) {
     return new self(bcadd($this->num, $other instanceof parent ? $other->num : $other, 0));
@@ -129,8 +129,8 @@ class BigInt extends BigNum {
   /**
    * -(0), strictly integer subtraction
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function subtract0($other) {
     return new self(bcsub($this->num, $other instanceof parent ? $other->num : $other, 0));
@@ -139,8 +139,8 @@ class BigInt extends BigNum {
   /**
    * *(0), strictly integer multiplication
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function multiply0($other) {
     return new self(bcmul($this->num, $other instanceof self ? $other->num : $other, 0));
@@ -149,8 +149,8 @@ class BigInt extends BigNum {
   /**
    * /
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function divide0($other) {
     try {
@@ -169,8 +169,8 @@ class BigInt extends BigNum {
    * ^
    *
    * @see     http://en.wikipedia.org/wiki/Exponentiation
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function power($other) {
     if ($other instanceof self) {
@@ -193,8 +193,8 @@ class BigInt extends BigNum {
   /**
    * %
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function modulo($other) {
     try {
@@ -212,8 +212,8 @@ class BigInt extends BigNum {
   /**
    * &
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function bitwiseAnd($other) {
     $a= self::bytesOf($this->num);
@@ -225,8 +225,8 @@ class BigInt extends BigNum {
   /**
    * |
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function bitwiseOr($other) {
     $a= self::bytesOf($this->num);
@@ -238,8 +238,8 @@ class BigInt extends BigNum {
   /**
    * ^
    *
-   * @param   var other
-   * @return  math.BigNum
+   * @param  math.BigNum|int|float|string $other
+   * @return math.BigNum
    */
   public function bitwiseXor($other) {
     $a= self::bytesOf($this->num);
@@ -252,7 +252,7 @@ class BigInt extends BigNum {
    * >>
    *
    * @param   var shift
-   * @return  math.BigNum
+   * @return math.BigNum
    */
   public function shiftRight($shift) {
     return new self(bcdiv($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift, 0), 0));
@@ -262,7 +262,7 @@ class BigInt extends BigNum {
    * <<
    *
    * @param   var shift
-   * @return  math.BigNum
+   * @return math.BigNum
    */
   public function shiftLeft($shift) {
     return new self(bcmul($this->num, bcpow(2, $shift instanceof self ? $shift->num : $shift, 0), 0));
@@ -273,7 +273,7 @@ class BigInt extends BigNum {
    *
    * @see     xp://math.BigNum#toBytes
    * @param   string bytes
-   * @return  math.BigNum
+   * @return math.BigNum
    */
   protected static function fromBytes($bytes) {
     $len= strlen($bytes);
@@ -294,7 +294,7 @@ class BigInt extends BigNum {
    * Creates sequence of bytes from a bignum
    *
    * @see     xp://math.BigNum#fromBytes
-   * @return  string
+   * @return string
    */
   protected static function bytesOf($n) {
     $value= '';
@@ -308,7 +308,7 @@ class BigInt extends BigNum {
   /**
    * Returns an byte representing this big integer
    *
-   * @return  int
+   * @return int
    */
   public function byteValue() {
     return $this->bitwiseAnd(0xFF)->intValue();
