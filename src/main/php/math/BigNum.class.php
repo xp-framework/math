@@ -51,16 +51,16 @@ abstract class BigNum implements Value {
    */
   public abstract function divide($other);
   
-  /**
-   * Returns an integer representing this bignum
-   *
-   * @return int
-   */
-  public function intValue() { return (int)substr($this->num, 0, strcspn($this->num, '.')); }
+  /** Returns an integer representing this bignum */
+  public function intValue(): int { return (int)$this->num; }
+
+  /** Returns an float representing this bignum */
+  public function floatValue(): float { return (float)$this->num; }
 
   /**
-   * Returns a double representing this bignum
+   * Returns a float representing this bignum
    *
+   * @deprecated Use floatValue() instead
    * @return double
    */
   public function doubleValue() { return (double)$this->num; }

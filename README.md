@@ -15,29 +15,26 @@ API: BigInt
 
 ```php
 public class math.BigInt extends math.BigNum {
+  public math.BigInt __construct(int|float|string|parent $in)
 
-  public math.BigInt __construct(string $in)
-
-  protected static string bytesOf(var $n)
-
-  public math.BigNum add(var $other)
-  public math.BigNum subtract(var $other)
-  public math.BigNum multiply(var $other)
-  public math.BigNum divide(var $other)
-  public math.BigNum add0(var $other)
-  public math.BigNum subtract0(var $other)
-  public math.BigNum multiply0(var $other)
-  public math.BigNum divide0(var $other)
-  public math.BigNum power(var $other)
-  public math.BigNum modulo(var $other)
-  public math.BigNum bitwiseAnd(var $other)
-  public math.BigNum bitwiseOr(var $other)
-  public math.BigNum bitwiseXor(var $other)
-  public math.BigNum shiftRight(var $shift)
-  public math.BigNum shiftLeft(var $shift)
+  public math.BigNum add(int|float|string|parent $other)
+  public math.BigNum subtract(int|float|string|parent $other)
+  public math.BigNum multiply(int|float|string|parent $other)
+  public math.BigNum divide(int|float|string|parent $other)
+  public math.BigNum add0(int|float|string|parent $other)
+  public math.BigNum subtract0(int|float|string|parent $other)
+  public math.BigNum multiply0(int|float|string|parent $other)
+  public math.BigNum divide0(int|float|string|parent $other)
+  public math.BigNum power(int|float|string|parent $other)
+  public math.BigNum modulo(int|float|string|parent $other)
+  public math.BigNum bitwiseAnd(int|float|string|parent $other)
+  public math.BigNum bitwiseOr(int|float|string|parent $other)
+  public math.BigNum bitwiseXor(int|float|string|parent $other)
+  public math.BigNum shiftRight(int|float|string|parent $shift)
+  public math.BigNum shiftLeft(int|float|string|parent $shift)
   public int byteValue()
   public int intValue()
-  public int doubleValue()
+  public float floatValue()
 }
 ```
 
@@ -46,20 +43,19 @@ API: BigFloat
 
 ```php
 public class math.BigFloat extends math.BigNum {
-  protected var math.BigNum::$num
+  public math.BigFloat __construct(int|float|string|parent $in)
 
-  public math.BigFloat __construct(string $in)
-
-  public math.BigNum add(var $other)
-  public math.BigNum subtract(var $other)
-  public math.BigNum multiply(var $other)
-  public math.BigNum divide(var $other)
-  public math.BigNum power(var $other)
+  public math.BigNum add(int|float|string|parent $other)
+  public math.BigNum subtract(int|float|string|parent $other)
+  public math.BigNum multiply(int|float|string|parent $other)
+  public math.BigNum divide(int|float|string|parent $other)
+  public math.BigNum power(int|float|string|parent $other)
   public math.BigFloat ceil()
   public math.BigFloat floor()
   public math.BigFloat round([int $precision= 0])
-  public bool equals(lang.Generic $cmp)
+  public int compare(int|float|string|parent $other, ?int $precision= null)
+  public bool equals(int|float|string|parent $other, ?int $precision= null)
   public int intValue()
-  public int doubleValue()
+  public float floatValue()
 }
 ```
