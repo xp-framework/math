@@ -5,9 +5,10 @@ use lang\IllegalArgumentException;
 /**
  * A big integer
  *
- * @see     xp://math.BigNum
- * @test    xp://net.xp_framework.unittest.math.BigIntTest
- * @test    xp://net.xp_framework.unittest.math.BigIntAndFloatTest
+ * @see   math.BigNum
+ * @test  math.unittest.ComparisonTest
+ * @test  math.unittest.BigIntTest
+ * @test  math.unittest.BigIntAndFloatTest
  */
 class BigInt extends BigNum {
 

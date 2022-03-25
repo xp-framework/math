@@ -12,10 +12,11 @@ use lang\Value;
  * @ext      bcmath
  */
 abstract class BigNum implements Value {
+  private static $PRECISION;
   protected $num;
 
   static function __static() {
-    bcscale(ini_get('precision') ?: 14);
+    bcscale(self::$PRECISION= (int)(ini_get('precision') ?: 14));
   }
   
   /**
@@ -65,16 +66,18 @@ abstract class BigNum implements Value {
   public function doubleValue() { return (double)$this->num; }
 
   /** @return string */
-  public function __toString() { return $this->num; }
+  public function __toString() { return (string)$this->num; }
 
   /** @return string */
   public function toString() { return nameof($this).'('.$this->num.')'; }
 
   /** @return string */
-  public function hashCode() { return (string)$this->num; }
+  public function hashCode() { return 'B'.(string)$this->num; }
 
   /**
-   * Compare another value to this bignum
+   * Compare another value to this bignum. Only regards instances of
+   * the same class as equal. For comparison with arbitrary values,
+   * use `compare()` instead.
    *
    * @param  var $value
    * @return int
@@ -84,12 +87,34 @@ abstract class BigNum implements Value {
   }
 
   /**
-   * Returns whether another object is equal to this
+   * Compare another value to this bignum. Returns 1 if this number is larger
+   * than the given value, 0 if they are the same, and -1 if this number is
+   * smaller.
    *
-   * @param  var $value
+   * @param  self|int|float|string $other
+   * @param  ?int $precision
+   * @return int
+   */
+  public function compare($other, $precision= null) {
+    return bccomp(
+      $this->num,
+      $other instanceof self ? $other->num : $other,
+      $precision ?? self::$PRECISION
+    );
+  }
+
+  /**
+   * Returns whether another value is equal to this bignum.
+   *
+   * @param  self|int|float|string $other
+   * @param  ?int $precision
    * @return bool
    */
-  public function equals($value) {
-    return $value instanceof $this && 0 === bccomp($this->num, $value->num);
+  public function equals($other, $precision= null) {
+    return 0 === bccomp(
+      $this->num,
+      $other instanceof self ? $other->num : $other,
+      $precision ?? self::$PRECISION
+    );
   }
 }
