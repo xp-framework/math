@@ -12,10 +12,11 @@ use lang\Value;
  * @ext      bcmath
  */
 abstract class BigNum implements Value {
+  private static $PRECISION;
   protected $num;
 
   static function __static() {
-    bcscale(ini_get('precision') ?: 14);
+    bcscale(self::$PRECISION= (int)(ini_get('precision') ?: 14));
   }
   
   /**
@@ -98,7 +99,7 @@ abstract class BigNum implements Value {
     return bccomp(
       $this->num,
       $other instanceof self ? $other->num : $other,
-      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale(null)
+      $precision ?? self::$PRECISION
     );
   }
 
@@ -113,7 +114,7 @@ abstract class BigNum implements Value {
     return 0 === bccomp(
       $this->num,
       $other instanceof self ? $other->num : $other,
-      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale(null)
+      $precision ?? self::$PRECISION
     );
   }
 }
