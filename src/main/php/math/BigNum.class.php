@@ -98,7 +98,7 @@ abstract class BigNum implements Value {
     return bccomp(
       $this->num,
       $other instanceof self ? $other->num : $other,
-      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale()
+      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale(null)
     );
   }
 
@@ -113,7 +113,7 @@ abstract class BigNum implements Value {
     return 0 === bccomp(
       $this->num,
       $other instanceof self ? $other->num : $other,
-      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale()
+      PHP_VERSION_ID >= 80000 ? $precision : $precision ?? bcscale(null)
     );
   }
 }
