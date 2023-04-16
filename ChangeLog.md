@@ -3,6 +3,8 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+* Merged PR #4: Migrate to new testing library - @thekid
+
 ## 9.1.0 / 2022-03-25
 
 * Deprecated doubleValue() in favor of floatValue() - @thekid
