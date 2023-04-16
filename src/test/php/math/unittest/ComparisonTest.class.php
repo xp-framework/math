@@ -1,7 +1,7 @@
 <?php namespace math\unittest;
 
-use math\{BigInt, BigFloat};
-use unittest\{Assert, Values, Test};
+use math\{BigFloat, BigInt};
+use test\{Assert, Test, Values};
 
 class ComparisonTest {
 
@@ -29,7 +29,7 @@ class ComparisonTest {
     yield ['12699025049277956096.22', '12699025049277956096.22', 0];
   }
 
-  #[Test, Values('integers')]
+  #[Test, Values(from: 'integers')]
   public function compare_bigint($a, $b, $expected) {
     Assert::equals($expected, (new BigInt($a))->compare($b));
   }
@@ -39,7 +39,7 @@ class ComparisonTest {
     Assert::equals(0, (new BigInt(1))->compare(1.5, 0));
   }
 
-  #[Test, Values('floats')]
+  #[Test, Values(from: 'floats')]
   public function compare_bigfloat($a, $b, $expected) {
     Assert::equals($expected, (new BigFloat($a))->compare($b));
   }
@@ -49,12 +49,12 @@ class ComparisonTest {
     Assert::equals($expected, (new BigFloat(1.444))->compare(1.445, $precision));
   }
 
-  #[Test, Values('integers')]
+  #[Test, Values(from: 'integers')]
   public function equals_bigint($a, $b, $expected) {
     Assert::equals(0 === $expected, (new BigInt($a))->equals($b));
   }
 
-  #[Test, Values('floats')]
+  #[Test, Values(from: 'floats')]
   public function equals_bigfloat($a, $b, $expected) {
     Assert::equals(0 === $expected, (new BigFloat($a))->equals($b));
   }
