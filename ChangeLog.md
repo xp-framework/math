@@ -3,6 +3,7 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+* Added PHP 8.4 to the test matrix - @thekid
 * Merged PR #4: Migrate to new testing library - @thekid
 
 ## 9.1.0 / 2022-03-25
