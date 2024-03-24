@@ -3,6 +3,10 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+## 9.3.0 / 2024-03-24
+
+* Made compatible with XP 12 - @thekid
+
 ## 9.2.0 / 2024-03-01
 
 * Added PHP 8.4 to the test matrix - @thekid
