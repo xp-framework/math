@@ -63,7 +63,7 @@ abstract class BigNum implements Value {
    * @deprecated Use floatValue() instead
    * @return double
    */
-  public function doubleValue() { return (double)$this->num; }
+  public function doubleValue() { return (float)$this->num; }
 
   /** @return string */
   public function __toString() { return (string)$this->num; }
