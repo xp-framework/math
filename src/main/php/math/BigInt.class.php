@@ -169,11 +169,15 @@ class BigInt extends BigNum {
   /**
    * ^
    *
-   * @see     http://en.wikipedia.org/wiki/Exponentiation
+   * @see    http://en.wikipedia.org/wiki/Exponentiation
    * @param  math.BigNum|int|float|string $other
    * @return math.BigNum
    */
   public function power($other) {
+    if (0 === bccomp($this->num, 0) && -1 === bccomp($other instanceof self ? $other->num : $other, 0)) {
+      throw new IllegalArgumentException('Negative power of zero');
+    }
+
     if ($other instanceof self) {
       return new self(bcpow($this->num, $other->num));
     } else if (is_int($other)) {

@@ -78,6 +78,10 @@ class BigFloat extends BigNum {
    * @return math.BigNum
    */
   public function power($other) {
+    if (0 === bccomp($this->num, 0) && -1 === bccomp($other instanceof self ? $other->num : $other, 0)) {
+      throw new IllegalArgumentException('Negative power of zero');
+    }
+
     return new self(bcpow($this->num, $other instanceof self ? $other->num : $other));
   }
 

@@ -184,9 +184,9 @@ class BigFloatTest {
     Assert::equals(new BigFloat(1.0), (new BigFloat(0.0))->power(new BigFloat(0.0)));
   }
 
-  #[Test]
+  #[Test, Expect(IllegalArgumentException::class)]
   public function powerOfZeroNegative() {
-    Assert::equals(new BigFloat(0.0), (new BigFloat(0.0))->power(new BigFloat(-2)));
+    (new BigFloat(0.0))->power(new BigFloat(-2));
   }
 
   #[Test]

@@ -239,9 +239,9 @@ class BigIntTest {
     Assert::equals(new BigInt(1), (new BigInt(0))->power(new BigInt(0)));
   }
 
-  #[Test]
+  #[Test, Expect(IllegalArgumentException::class)]
   public function powerOfZeroNegative() {
-    Assert::equals(new BigInt(0), (new BigInt(0))->power(new BigInt(-2)));
+    (new BigInt(0))->power(new BigInt(-2));
   }
 
   #[Test]
