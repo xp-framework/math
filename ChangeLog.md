@@ -3,7 +3,7 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
-## 10.0.0 / ????-??-??
+## 10.0.0 / 2025-08-16
 
 **Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343
   (@thekid)
