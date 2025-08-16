@@ -5,6 +5,8 @@ XP Math changelog
 
 ## 10.0.0 / ????-??-??
 
+**Heads up:** Dropped support for PHP < 7.4, see xp-framework/rfc#343
+  (@thekid)
 * Merged PR #6: Make `Big(Int|Float)::power()` consistent with IEEE 754
   rules, see issue #5.
   (@thekid)
