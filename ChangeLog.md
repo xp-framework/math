@@ -3,6 +3,12 @@ XP Math changelog
 
 ## ?.?.? / ????-??-??
 
+## 10.0.0 / ????-??-??
+
+* Merged PR #6: Make `Big(Int|Float)::power()` consistent with IEEE 754
+  rules, see issue #5.
+  (@thekid)
+
 ## 9.3.0 / 2024-03-24
 
 * Made compatible with XP 12 - @thekid
